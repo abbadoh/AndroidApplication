@@ -10,12 +10,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.tp.gumo.androidapplication.MyActivity;
 import com.tp.gumo.androidapplication.R;
 
-import java.io.IOException;
+import java.util.HashMap;
 
-import network.Network;
+import network.YandexTranslateApi;
 
 /**
  * Created by r.kildiev on 11.09.2014.
@@ -70,12 +69,10 @@ public class DetailFragment extends Fragment {
 
         @Override
         protected Void doInBackground(Integer... params) {
-            Network network = new Network();
-            try {
-                wind = network.urlConnection();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            YandexTranslateApi yandexTranslateApi = new YandexTranslateApi();
+//                wind = yandexTranslateApi.urlConnection();
+            HashMap<String, String> languages = yandexTranslateApi.getLanguages("ru");
+
 //            for(int i = 0; i < 10; i++) {
 //                try {
 //                    publishProgress(i);
