@@ -41,6 +41,12 @@ public class SplashScreenActivity extends FragmentActivity implements ReceiveLan
 
         @Override
         protected HashMap<String, String> doInBackground(Integer... params) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
             YandexTranslateApi yandexTranslateApi = new YandexTranslateApi();
 
             return yandexTranslateApi.getLanguages("ru");
