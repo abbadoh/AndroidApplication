@@ -9,11 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-
 import com.tp.gumo.activity.R;
-
 import java.util.HashMap;
-
 import api.YandexTranslateApi;
 
 public class DetailFragment extends Fragment {

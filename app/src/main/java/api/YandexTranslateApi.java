@@ -29,7 +29,7 @@ public class YandexTranslateApi extends Api {
 
             JSONObject result = getApiMethodJsonResult("getLangs", params);
 
-            if (result.has("dirs")) {
+            if (result != null && result.has("dirs")) {
                 JSONArray dirs = result.getJSONArray("dirs");
                 int dirsLength = dirs.length();
                 boolean hasLangs = result.has("langs");
