@@ -1,10 +1,13 @@
-package fragments;
+package activities;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 
-import com.tp.gumo.androidapplication.R;
+import com.tp.gumo.activity.R;
+
+import fragments.DetailFragment;
+import fragments.NewsListFragment;
 
 
 /**

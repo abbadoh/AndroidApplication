@@ -6,11 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.tp.gumo.androidapplication.R;
+import com.tp.gumo.activity.R;
 
-/**
- * Created by f1nal on 08.10.14.
- */
 public class SplashScreenFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

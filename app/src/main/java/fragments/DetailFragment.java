@@ -10,11 +10,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.tp.gumo.androidapplication.R;
+import com.tp.gumo.activity.R;
 
 import java.util.HashMap;
 
-import network.YandexTranslateApi;
+import api.YandexTranslateApi;
 
 /**
  * Created by r.kildiev on 11.09.2014.
