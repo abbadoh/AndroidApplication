@@ -1,4 +1,6 @@
 package activities;
+
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -12,7 +14,7 @@ public class SplashScreenActivity extends FragmentActivity implements ReceiveLan
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.splash_screen);
+        setContentView(R.layout.splash_screen_activity);
 
         LoadLanguagesAsyncTask task = new LoadLanguagesAsyncTask(this);
 
@@ -21,7 +23,10 @@ public class SplashScreenActivity extends FragmentActivity implements ReceiveLan
 
     @Override
     public void setLanguages(HashMap<String, String> languages) {
+        Intent i = new Intent(SplashScreenActivity.this, DirectionChooserActivity.class);
 
+        i.putExtra("languages", languages);
+        startActivity(i);
     }
 
     public class LoadLanguagesAsyncTask extends AsyncTask<Integer, Integer, HashMap<String, String>> {

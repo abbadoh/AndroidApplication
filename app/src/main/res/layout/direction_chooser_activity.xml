@@ -7,8 +7,7 @@
     android:orientation="vertical">
 
     <fragment
-        android:id="@+id/splash_screen_fragment_container"
-        class="fragments.SplashScreenFragment"
+        class="fragments.DirectionChooserFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

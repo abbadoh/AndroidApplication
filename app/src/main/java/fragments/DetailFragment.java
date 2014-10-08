@@ -16,9 +16,6 @@ import java.util.HashMap;
 
 import api.YandexTranslateApi;
 
-/**
- * Created by r.kildiev on 11.09.2014.
- */
 public class DetailFragment extends Fragment {
 
     public static String NEWS_NO = "news_no";

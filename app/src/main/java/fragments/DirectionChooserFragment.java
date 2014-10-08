@@ -1,6 +1,5 @@
 package fragments;
 
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -10,22 +9,18 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-/**
- * Created by r.kildiev on 11.09.2014.
- */
-public class NewsListFragment extends ListFragment {
+public class DirectionChooserFragment extends ListFragment {
     String[] numbers_text = new String[]{"Moscow"};
     private OnItemSelectedListener mCallback;
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        mCallback.onArticleSelected(position);
+        mCallback.onDirectionSelected(position);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(inflater.getContext(), android.R.layout.simple_list_item_1,
-                numbers_text);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(inflater.getContext(), android.R.layout.simple_list_item_1, numbers_text);
         setListAdapter(adapter);
         return super.onCreateView(inflater, container, savedInstanceState);
     }
@@ -44,8 +39,7 @@ public class NewsListFragment extends ListFragment {
         }
     }
 
-    // Container Activity must implement this interface
     public interface OnItemSelectedListener {
-        public void onArticleSelected(int position);
+        public void onDirectionSelected(int position);
     }
 }
