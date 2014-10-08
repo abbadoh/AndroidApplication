@@ -9,16 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-
-import com.tp.gumo.androidapplication.R;
-
+import com.tp.gumo.activity.R;
 import java.util.HashMap;
+import api.YandexTranslateApi;
 
-import network.YandexTranslateApi;
-
-/**
- * Created by r.kildiev on 11.09.2014.
- */
 public class DetailFragment extends Fragment {
 
     public static String NEWS_NO = "news_no";

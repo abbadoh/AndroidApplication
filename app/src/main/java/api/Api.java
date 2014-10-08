@@ -1,4 +1,4 @@
-package network;
+package api;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.client.utils.URIUtils;

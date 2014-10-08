@@ -4,5 +4,7 @@
     <string name="app_name">AndroidApplication</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="splash_screen_loading_label">Выполняется загрузка. Пожалуйста, подождите...</string>
+    <string name="title_direction_chooser_activity">Выбор языка</string>
 
 </resources>
