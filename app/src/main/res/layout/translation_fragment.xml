@@ -14,11 +14,20 @@
         android:id="@+id/translate_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_margin="15dp"
         android:background="@drawable/button_pressable_bg"
         android:padding="10dp"
         android:text="Перевести"/>
+
+    <Button
+        android:id="@+id/switch_lang_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:background="@drawable/button_pressable_bg"
+        android:padding="10dp"
+        android:text="@string/swapLangButtonName"/>
+
 
     <TextView
         android:id="@+id/translated_text"
