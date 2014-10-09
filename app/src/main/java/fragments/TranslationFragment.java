@@ -29,6 +29,22 @@ public class TranslationFragment extends Fragment implements View.OnClickListene
     private Button mTranslateButton;
     private Button mSwitchLangButton;
     private TextView mTranslatedText;
+
+    public void setDirection(String direction) {
+        this.direction = direction;
+
+        View view = getView();
+
+        if (view != null) {
+            TextView languageDirection = (TextView) getView().findViewById(R.id.language_direction_textview);
+
+            if (languageDirection != null) {
+                String languageDirectionStr = languages.get(direction);
+                languageDirection.setText(languageDirectionStr);
+            }
+        }
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -44,7 +60,7 @@ public class TranslationFragment extends Fragment implements View.OnClickListene
         //mTranslatedText.setText("Ждите перевода...");
         mTranslateButton.setOnClickListener(this);
         mSwitchLangButton.setOnClickListener(this);
-
+        setDirection(direction);
     }
 
     @Override
@@ -72,7 +88,8 @@ public class TranslationFragment extends Fragment implements View.OnClickListene
         }
         else if(v == mSwitchLangButton) {
             String[] args = direction.split("-", 2);
-            direction = String.format("%s-%s", args[1], args[0]);
+
+            setDirection(String.format("%s-%s", args[1], args[0]));
         }
     }
 
