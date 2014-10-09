@@ -30,6 +30,26 @@ public class TranslationFragment extends Fragment implements View.OnClickListene
     private Button mSwitchLangButton;
     private TextView mTranslatedText;
 
+    public void setTranslatedText(String value) {
+        mTranslatedText.setText(value);
+    }
+
+    public String getTranslatedText() {
+        return mTranslatedText.getText().toString();
+    }
+
+    public HashMap<String, String> getLanguages() {
+        return languages;
+    }
+
+    public String getDirection() {
+        return direction;
+    }
+
+    public void setLanguages(HashMap<String, String> languages) {
+        this.languages = languages;
+    }
+
     public void setDirection(String direction) {
         this.direction = direction;
 
@@ -60,25 +80,6 @@ public class TranslationFragment extends Fragment implements View.OnClickListene
         //mTranslatedText.setText("Ждите перевода...");
         mTranslateButton.setOnClickListener(this);
         mSwitchLangButton.setOnClickListener(this);
-        setDirection(direction);
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-
-        Intent intent = activity.getIntent();
-
-        String direction = (String)intent.getSerializableExtra("direction");
-        HashMap<String, String> languages = (HashMap<String, String>)intent.getSerializableExtra("languages");
-
-        if (languages != null) {
-            this.languages = languages;
-        }
-
-        if (direction != null) {
-            this.direction = direction;
-        }
     }
 
     @Override
@@ -94,8 +95,6 @@ public class TranslationFragment extends Fragment implements View.OnClickListene
     }
 
     private class TranslateAsyncTask extends AsyncTask<Integer, Void, String> {
-
-
         @Override
         protected String doInBackground(Integer... params) {
             YandexTranslateApi api = new YandexTranslateApi();
