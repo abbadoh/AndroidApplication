@@ -11,6 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
+
+import com.tp.gumo.activity.R;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -45,11 +48,37 @@ public class DirectionChooserFragment extends ListFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(inflater.getContext(), android.R.layout.simple_list_item_1, items);
-
-        setListAdapter(adapter);
+        setListAdapter(new DirectionChooserAdapter(items));
 
         return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+    private class DirectionChooserAdapter extends ArrayAdapter<String> {
+        public DirectionChooserAdapter(String[] objects) {
+            super(getActivity(), 0, objects);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            ViewHolder viewHolder;
+
+            if (convertView == null) {
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
+                viewHolder = new ViewHolder();
+                viewHolder.text = (TextView) convertView.findViewById(R.id.language_direction_text);
+                convertView.setTag(viewHolder);
+            } else {
+                viewHolder = (ViewHolder) convertView.getTag();
+            }
+
+            viewHolder.text.setText(getItem(position));
+
+            return convertView;
+        }
+
+        private class ViewHolder {
+            public TextView text;
+        }
     }
 
     @Override
