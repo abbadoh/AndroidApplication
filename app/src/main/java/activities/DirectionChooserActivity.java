@@ -24,10 +24,7 @@ public class DirectionChooserActivity extends FragmentActivity implements Direct
 
         if (languages != null) {
             this.languages = languages;
-
         }
-
-        Fragment directionChooserFragment = getFragmentManager().findFragmentById(R.id.direction_chooser_fragment);
     }
 
     @Override
@@ -36,8 +33,8 @@ public class DirectionChooserActivity extends FragmentActivity implements Direct
     }
 
     @Override
-    public void onDirectionSelected(int position) {
-        System.out.println(position);
+    public void onDirectionSelected(String direction) {
+        System.out.println(direction);
 
 //        DetailFragment newFragment = DetailFragment.getInstance(position);
 //
