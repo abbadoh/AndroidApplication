@@ -26,6 +26,7 @@ public class TranslationFragment extends Fragment implements View.OnClickListene
     private String direction;
     private EditText mEditText;
     private Button mTranslateButton;
+    private Button mSwitchLangButton;
     private TextView mTranslatedText;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,9 +38,12 @@ public class TranslationFragment extends Fragment implements View.OnClickListene
         super.onViewCreated(view, savedInstanceState);
         mTranslateButton = (Button) view.findViewById(R.id.translate_button);
         mTranslatedText = (TextView) view.findViewById(R.id.translated_text);
+        mSwitchLangButton = (Button) view.findViewById(R.id.switch_lang_button);
         mEditText = (EditText) view.findViewById(R.id.text_to_translate);
         //mTranslatedText.setText("Ждите перевода...");
         mTranslateButton.setOnClickListener(this);
+        mSwitchLangButton.setOnClickListener(this);
+
     }
 
     @Override
@@ -51,7 +55,13 @@ public class TranslationFragment extends Fragment implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-        new TranslateAsyncTask().execute();
+        if(v == mTranslateButton) {
+            new TranslateAsyncTask().execute();
+        }
+        else if(v == mSwitchLangButton) {
+            String[] args = direction.split("-", 2);
+            direction = String.format("%s-%s", args[1], args[0]);
+        }
     }
 
     private class TranslateAsyncTask extends AsyncTask<Integer, Void, String> {
