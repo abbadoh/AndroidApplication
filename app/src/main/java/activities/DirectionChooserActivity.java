@@ -35,6 +35,9 @@ public class DirectionChooserActivity extends FragmentActivity implements Direct
     @Override
     public void onDirectionSelected(String direction) {
         System.out.println(direction);
+        Intent i = new Intent(DirectionChooserActivity.this, TranslationActivity.class);
+        i.putExtra("direction", direction);
+        startActivity(i);
 
 //        DetailFragment newFragment = DetailFragment.getInstance(position);
 //

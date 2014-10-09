@@ -61,4 +61,27 @@ public class YandexTranslateApi extends Api {
 
         return languages;
     }
+
+    public String translate(String text, String direction) {
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+
+        params.add(new BasicNameValuePair("key", API_KEY));
+        params.add(new BasicNameValuePair("text", text));
+        params.add(new BasicNameValuePair("lang", direction));
+
+        JSONObject result = getApiMethodJsonResult("translate", params);
+        String translation = null;
+
+        if (result != null) {
+            try {
+                int code = result.getInt("code");
+                if (code == 200) {
+                    translation = result.getJSONArray("text").getString(0);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return translation;
+    }
 }

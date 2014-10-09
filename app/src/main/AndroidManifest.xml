@@ -20,6 +20,10 @@
             android:name="activities.DirectionChooserActivity"
             android:label="@string/title_direction_chooser_activity" >
         </activity>
+        <activity
+            android:name="activities.TranslationActivity"
+            android:label="@string/title_translation_activity" >
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
