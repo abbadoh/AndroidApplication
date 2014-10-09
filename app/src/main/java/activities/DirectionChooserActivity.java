@@ -37,6 +37,7 @@ public class DirectionChooserActivity extends FragmentActivity implements Direct
         System.out.println(direction);
         Intent i = new Intent(DirectionChooserActivity.this, TranslationActivity.class);
         i.putExtra("direction", direction);
+        i.putExtra("languages", languages);
         startActivity(i);
 
 //        DetailFragment newFragment = DetailFragment.getInstance(position);

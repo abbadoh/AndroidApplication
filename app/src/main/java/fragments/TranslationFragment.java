@@ -24,6 +24,7 @@ import api.YandexTranslateApi;
 
 public class TranslationFragment extends Fragment implements View.OnClickListener {
     private String direction;
+    private HashMap<String, String> languages;
     private EditText mEditText;
     private Button mTranslateButton;
     private TextView mTranslatedText;
@@ -45,8 +46,19 @@ public class TranslationFragment extends Fragment implements View.OnClickListene
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
+
         Intent intent = activity.getIntent();
-        direction = (String)intent.getSerializableExtra("direction");
+
+        String direction = (String)intent.getSerializableExtra("direction");
+        HashMap<String, String> languages = (HashMap<String, String>)intent.getSerializableExtra("languages");
+
+        if (languages != null) {
+            this.languages = languages;
+        }
+
+        if (direction != null) {
+            this.direction = direction;
+        }
     }
 
     @Override
