@@ -12,17 +12,35 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
 
 import activities.DirectionChooserActivity;
 
 public class DirectionChooserFragment extends ListFragment {
     private OnItemSelectedListener mCallback;
     String[] items = new String[] { };
+    HashMap<String, String> languages;
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        mCallback.onDirectionSelected(position);
+        String clickedKey = null;
+
+        for (String key : languages.keySet()) {
+            if (languages.get(key).equals(items[position])) {
+                clickedKey = key;
+                break;
+            }
+        }
+
+        if (clickedKey != null) {
+            mCallback.onDirectionSelected(clickedKey);
+        }
     }
 
     @Override
@@ -39,10 +57,20 @@ public class DirectionChooserFragment extends ListFragment {
         super.onAttach(activity);
 
         Intent intent = activity.getIntent();
-        HashMap<String, String> languages = (HashMap<String, String>)intent.getSerializableExtra("languages");
+
+        languages = (HashMap<String, String>)intent.getSerializableExtra("languages");
 
         if (languages != null) {
-            items = languages.values().toArray(new String[0]);
+            List<String> languageDirections = new ArrayList<String>(languages.values());
+            List<String> languageDirectionsSorted = new ArrayList<String>();
+
+            Collections.sort(languageDirections, new LanguageDirectionsComparator());
+
+            for (String languageDirection : languageDirections) {
+                languageDirectionsSorted.add(languageDirection);
+            }
+
+            items = languageDirectionsSorted.toArray(new String[0]);
         }
 
         try {
@@ -54,6 +82,34 @@ public class DirectionChooserFragment extends ListFragment {
     }
 
     public interface OnItemSelectedListener {
-        public void onDirectionSelected(int position);
+        public void onDirectionSelected(String direction);
+    }
+
+    class LanguageDirectionsComparator implements Comparator<String> {
+        @Override
+        public int compare(String lhs, String rhs) {
+            String[] lhs_parsed = lhs.split(" -> ", 2);
+            String[] rhs_parsed = rhs.split(" -> ", 2);
+
+            if (lhs_parsed[0].equals("Русский") && !rhs_parsed[0].equals("Русский")) {
+                return -1;
+            } else if (!lhs_parsed[0].equals("Русский") && rhs_parsed[0].equals("Русский")) {
+                return 1;
+            }
+
+            if (lhs_parsed[1].equals("Русский") && !rhs_parsed[1].equals("Русский")) {
+                return -1;
+            } else if (!lhs_parsed[1].equals("Русский") && rhs_parsed[1].equals("Русский")) {
+                return 1;
+            }
+
+            int compare = lhs_parsed[0].compareTo(rhs_parsed[0]);
+
+            if (compare == 0) {
+                compare = lhs_parsed[1].compareTo(rhs_parsed[1]);
+            }
+
+            return compare;
+        }
     }
 }
